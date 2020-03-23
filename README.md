@@ -22,7 +22,7 @@ Example for restarting DI container on spring web application(war)
 
 # How to manage resource as external resource
 
-再作成対象するコンポーネントを生成するためのbean定義ファイルやプロパティファイルは、Warファイルの中ではなくAPサーバ内の外部ディレクトリの中に配置する。
+再作成対象のコンポーネントを生成するためのbean定義ファイルやプロパティファイルは、Warファイルの中ではなくAPサーバ内の外部ディレクトリの中に配置する。
 
 ![Solution](./images/how-to-manage-external-resource.png)
 
