@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:int-ip="http://www.springframework.org/schema/integration/ip"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd http://www.springframework.org/schema/integration/ip http://www.springframework.org/schema/integration/ip/spring-integration-ip.xsd">
+
+    <int-ip:tcp-connection-factory id="clientConnectionFactory" type="client" host="localhost" port="9999"/>
+
+    <int:channel id="outboundConnectorChannel"/>
+    <int:chain input-channel="outboundConnectorChannel">
+        <int:gateway request-channel="tcpOutboundGatewayChannel"/>
+        <int:transformer expression="new String(payload)"/>
+    </int:chain>
+
+    <int:channel id="tcpOutboundGatewayChannel"/>
+    <int-ip:tcp-outbound-gateway request-channel="tcpOutboundGatewayChannel"
+                                 connection-factory="clientConnectionFactory"/>
+
+</beans>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+    <context:property-placeholder location="classpath*:*.properties"/>
+
+    <int:gateway service-interface="com.example.app.InboundGateway" default-request-channel="inboundFlowChannel"/>
+
+    <int:channel id="inboundFlowChannel"/>
+    <int:service-activator input-channel="inboundFlowChannel" ref="inboundComponent" method="execute"
+                           output-channel="relayFlowChannel"/>
+    <bean id="inboundComponent" class="com.example.app.InboundComponent"/>
+
+    <int:channel id="relayFlowChannel"/>
+    <int:service-activator input-channel="relayFlowChannel" ref="relayComponent" method="execute"
+                           output-channel="outboundFlowChannel"/>
+    <bean id="relayComponent" class="com.example.app.RelayComponent"/>
+
+    <int:channel id="outboundFlowChannel"/>
+    <int:service-activator input-channel="outboundFlowChannel" ref="outboundComponent" method="execute"
+                           output-channel="outboundConnectorChannel"/>
+    <bean id="outboundComponent" class="com.example.app.OutboundComponent"/>
+
+</beans>
