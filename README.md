@@ -4,7 +4,7 @@ Example for restarting DI container on spring web application(war)
 
 # Motivation
 
-アプリケーション自体の再起動はすぜにコンポーネントの再作成したい。ただし特定のコンポーネント（例：外部システムとの通信コンポーネント）は接続を維持したいので再作成したくない。 ※大前提として・・・Spring Cloudの `@RefreshScope` は使わないものとする（＝Spring Clouldは利用しない）
+アプリケーション自体の再起動はすぜにコンポーネントの再作成をしたい。ただし特定のコンポーネント（例：外部システムとの通信コンポーネント）は接続を維持したいので再作成したくない。 ※大前提として・・・Spring Cloudの `@RefreshScope` は使わないものとする（＝Spring Clouldは利用しない）
 
 現状のDIコンテナの構成、および問題点は以下のとおり。
 
