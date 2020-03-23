@@ -12,7 +12,7 @@ Example for restarting DI container on spring web application(war)
 
 # Solution
 
-再作成が必要なものとそうでないものを別のコンテナ(アプリケーションコンテキスト)で管理さればいけそう。
+再作成が必要なものとそうでないものを別のコンテナ(アプリケーションコンテキスト)で管理すればいけそう。
 
 ![Solution](./images/solution-1.png)
 
